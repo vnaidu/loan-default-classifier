@@ -18,23 +18,23 @@ class LearningModel:
     X_test = None
     y_train = None
     y_test = None
-    
+
     training_time = None
-    
+
     predictions = {}
     y_pred = None
     y_pred_proba = None
     y_actual = None
-    
+
     evaluation = {}
     eval_report = None
-    
+
     valid_train_set = False
     valid_test_set = False
     valid_predictions = False
-    
+
     estimator = None
-    
+
     def __init__(self, name, learner, model_type='classification', verbose=False):
         '''
         inputs:
@@ -84,10 +84,10 @@ class LearningModel:
             self.y_pred = self.learner.predict(self.X_test)
             self.y_pred_proba = self.learner.predict_proba(self.X_test)
             self.valid_predictions = True
-    
+
     def basic_clf_eval(self, y_pred, y_pred_proba, y_actual):
         model_eval = pd.Series()
-    
+
         # Calculate the time it took to fit the model on training data
         model_eval['FitTime'] = self.training_time
 
@@ -101,7 +101,7 @@ class LearningModel:
         model_eval_df = pd.DataFrame(model_eval, columns=[self.name]).T
 
         return model_eval_df
-    
+
     def evaluate_classifier(self, y_pred, y_pred_proba, y_actual):
         eval_metrics = self.basic_clf_eval(y_pred, y_pred_proba, y_actual)
         self.evaluation['metrics'] = eval_metrics
@@ -116,7 +116,7 @@ class LearningModel:
             scores = pred_proba[:, pos_class]
         else:
             scores = pred_proba
-        
+
         roc_auc = roc_auc_score(y_actual, scores)
         fpr, tpr, thresholds = roc_curve(y_true=y_actual, y_score=scores, pos_label=pos_class)
 
@@ -141,13 +141,13 @@ class LearningModel:
             y_pred = self.y_pred
             y_pred_proba = self.y_pred_proba[:, 1]
             self.evaluate_classifier(y_pred, y_pred_proba, y_actual)
-    
+
     def display_evaluation(self, plot_roc=True):
         display(self.evaluation['metrics'])
         print(self.evaluation['classification_report'])
         if plot_roc:
             self.plot_roc_curve(self.y_pred_proba)
-    
+
     def add_data(self, X_train, X_test, y_train, y_test, infer_features=True):
         '''
         inputs:
@@ -161,23 +161,43 @@ class LearningModel:
         self.y_train = y_train
         self.y_test = y_test
         self.y_actual = y_test
-        
+
         if infer_features:
             self.infer_features()
-        
+
         self.validate_train_data()
         self.validate_test_data()
-    
+
     def infer_features(self):
         if self.X_train.__class__.__name__ == 'DataFrame':
             self.features = self.X_train.columns.tolist()
         elif self.X_test.__class__.__name__ == 'DataFrame':
             self.features = self.X_test.columns.tolist()
-        
+
     def validate_test_data(self):
         test_set = [self.X_test, self.y_test]
         self.valid_test_set = all([x is not None for x in test_set])
-    
+
     def validate_train_data(self):
         train_set = [self.X_train, self.y_train]
         self.valid_train_set = all([x is not None for x in train_set])
+
+def eval_db(current_db, to_add=None, display_db=False, force_add=False, reset_db=False):
+    if to_add is not None:
+        if len(current_db.columns) == len(to_add.columns):
+            if to_add.index.isin(current_db.index).any():
+                if force_add:
+                    current_db = pd.concat([current_db, to_add])
+                else:
+                    idx_in = to_add.index[to_add.index.isin(model_evals.index)]
+                    current_db.loc[idx_in] = to_add.loc[idx_in]
+            else:
+                current_db = pd.concat([current_db, to_add])
+        else:
+            print('Error: Length is not the same')
+            return current_db
+    if reset_db:
+        current_db = to_add
+    if display_db:
+        display(current_db)
+    return current_db
