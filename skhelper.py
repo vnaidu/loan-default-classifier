@@ -28,6 +28,7 @@ class LearningModel:
 
     evaluation = {}
     eval_report = None
+    feature_scores = None
 
     valid_train_set = False
     valid_test_set = False
@@ -133,9 +134,38 @@ class LearningModel:
         plt.legend(loc="lower right")
         plt.show()
 
+    def add_feature_scores(self, scores):
+        if len(scores) == len(self.features):
+            self.feature_scores = (
+                pd.DataFrame(data=list(zip(self.features, scores)),
+                             columns=['feature', 'score'])
+                .sort_values('score', ascending=False)
+                .reset_index(drop=True))
+
+    def display_top_features(self, top_n=10):
+        if self.feature_scores is not None:
+            scores = self.feature_scores.copy()
+            scores.columns = ['Feature', 'Score']
+            scores = scores.set_index(
+                np.array([str(i) for i in range(1, len(scores)+1)]))
+            display(scores[:top_n])
+
+    def plot_top_features(self, top_n=5):
+        if self.feature_scores is not None:
+            disp_title = 'Top ' + str(top_n) + ' Model Features ' + self.name
+            _ = sns.barplot(x=self.feature_scores.feature[:top_n],
+                            y=self.feature_scores.score[:top_n])
+            for item in _.get_xticklabels():
+                item.set_rotation(45)
+            _.set(xlabel='Feature', ylabel='Mean Score', title=disp_title)
+            plt.show()
+
     def evaluate_model(self, eval_fun=None, evaluation_set='test'):
+        scores = getattr(self.estimator , "feature_importances_", None)
         if self.verbose:
             print('Evaluating Model')
+        if scores is not None:
+            self.add_feature_scores(scores)
         if self.valid_predictions:
             y_actual = self.y_actual
             y_pred = self.y_pred
@@ -181,6 +211,7 @@ class LearningModel:
     def validate_train_data(self):
         train_set = [self.X_train, self.y_train]
         self.valid_train_set = all([x is not None for x in train_set])
+
 
 def eval_db(current_db, to_add=None, display_db=False, force_add=False, reset_db=False):
     if to_add is not None:
