@@ -1,0 +1,38 @@
+<style>
+.output_png {
+  display: flow-root;
+  text-align: center;
+  vertical-align: center;
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+.output {
+  margin-top: .5em;
+  margin-bottom: .5em;
+  align-items: center;
+}
+</style>
+
+<script src="https://unpkg.com/jupyter-js-widgets@~2.1.4/dist/embed.js"></script>
+<script type="application/vnd.jupyter.widget-state+json">
+{
+    "version_major": 1,
+    "version_minor": 0,
+    "state": {}
+}
+</script>
+<script>
+    MathJax.Hub.Config({
+                        TeX: {
+                           extensions: ["AMSmath.js"]
+                           },
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+                },
+                displayAlign: 'center',
+                "HTML-CSS": {
+                    styles: {'.MathJax_Display': {"margin": 4}}
+                }
+        });
+</script>
