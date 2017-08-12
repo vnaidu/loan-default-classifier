@@ -110,7 +110,6 @@ class LearningModel:
         self.evaluation['classification_report'] = classification_report(y_actual, y_pred)
 
     def plot_roc_curve(self, pred_proba, pos_class=1):
-        sns.set()
         pred_proba = self.y_pred_proba
         y_actual = self.y_actual
         if isinstance(pred_proba[0], np.ndarray):
