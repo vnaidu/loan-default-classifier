@@ -103,3 +103,5 @@ ENV/
 \.idea/
 
 playground\.ipynb
+
+data/raw/__MACOSX/
