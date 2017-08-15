@@ -32,7 +32,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.utils import check_random_state, check_X_y, check_array, column_or_1d
 from sklearn.utils.random import sample_without_replacement
 from sklearn.utils.validation import has_fit_parameter, check_is_fitted
-from sklearn.utils.fixes import bincount
+#from sklearn.utils.fixes import bincount
+from numpy import bincount
 from sklearn.utils.metaestimators import if_delegate_has_method
 from sklearn.utils.multiclass import check_classification_targets
 
