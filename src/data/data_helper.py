@@ -1,10 +1,11 @@
-
 import os
 import shutil
 import fnmatch
 import requests
 import hashlib
 import zipfile
+import json
+import box
 
 def file_hash_sha1(filename):
    """"Function returns the hex representation of the SHA-1 hash
@@ -73,7 +74,7 @@ def download_file(url, filepath, valid_hash=None):
     else:
         return False
 
-def validate_data_dirs(project_dir, data_hash):
+def validate_data_dirs(data_hash, project_dir='.'):
     valid_nfo = {dirname: True for dirname in data_hash.keys()}
     for dirname, nfo_dict in data_hash.items():
         for filename, filehash in nfo_dict.items():
@@ -81,3 +82,8 @@ def validate_data_dirs(project_dir, data_hash):
             if not is_valid_file(filepath, filehash):
                 valid_nfo[dirname] = False
     return valid_nfo
+
+def load_json_box(filename):
+    with open(filename) as json_file:
+        data = json.load(json_file)
+    return box.SBox(data, default_box=True, default_box_attr=None)

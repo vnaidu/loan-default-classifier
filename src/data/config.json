@@ -1,0 +1,39 @@
+{
+  "hash": {
+    "data": {
+      "raw": {
+        "lc_historical.csv": "2ab4770efe332d078ee935619ef3a6ea9bee85d5",
+        "LCDataDictionary.xlsx": "7878cb058dd17a735ac09d81984de6400de3cdf9"
+      },
+      "external": {
+        "lc_historical.csv.zip": "1d3d0cfdd641dd315a78c66803cb392e6a9c9b86",
+        "LCDataDictionary.xlsx": "7878cb058dd17a735ac09d81984de6400de3cdf9"
+      },
+      "interim": {
+        "lc_historical.csv": "abc43dd898cb75e440bfafe1f9c8a6be8afe0598"
+      },
+      "processed": {
+        "lc_historical.csv": "abc43dd898cb75e440bfafe1f9c8a6be8afe0598"
+      }
+    }
+  },
+  "download": {
+    "base_url": "http://vnaidu.com/data-store/loan-status/",
+    "to_download": {
+          "lc_historical.csv.zip": "1d3d0cfdd641dd315a78c66803cb392e6a9c9b86",
+          "LCDataDictionary.xlsx": "7878cb058dd17a735ac09d81984de6400de3cdf9"
+        }
+  },
+  "load": {
+    "data": {
+      "external": {
+        "to_extract": {
+          "lc_historical.csv.zip": ""
+        },
+        "to_copy": {
+          "LCDataDictionary.xlsx": ""
+        }
+      }
+    }
+  }
+}
