@@ -1,4 +1,8 @@
 <style>
+.rendered_html p {
+    text-align: left;
+    margin-bottom: 5px;
+}
 .output_png {
   display: flow-root;
   text-align: center;
@@ -11,6 +15,50 @@
   margin-bottom: .5em;
   align-items: center;
 }
+#toc-wrapper  {
+    border-color: #57564a;
+    color: #1e1e1e;
+    border: 0;
+}
+div#toc-wrapper {
+    background: #1e1e1e;
+}
+.float-wrapper, .sidebar-wrapper {
+    background-color: #1e1e1e;
+    border-color: #57564a;
+}
+
+#toc-wrapper .header {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(166, 226, 46, 1);
+}
+
+#toc-level0 a, #navigate_menu a, .toc {
+    color: rgba(166, 226, 46, 0.7);
+}
+#toc-level0 a, #navigate_menu a, .toc {
+  color: rgba(166, 226, 46, 0.7);
+}
+
+div#toc-header {
+    background-color: #1e1e1e;
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+#toc ul.toc-item {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 2%;
+    color: rgba(114, 179, 45, 1);
+}
+
+#toc-level0 a, #navigate_menu a, .toc {
+    background-color: #282828;
+}
+
 </style>
 
 <script src="https://unpkg.com/jupyter-js-widgets@~2.1.4/dist/embed.js"></script>
