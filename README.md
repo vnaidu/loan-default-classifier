@@ -1,5 +1,5 @@
 # Classifying Risky P2P Loans
-#### ML-Driven Approach to Risk Management for Unsecured Consumer Debt (P2P Lending)
+### ML-Driven Approach to Risk Management for Unsecured Consumer Debt (P2P Lending)
 ## Abstract
 The prevalence of a global Peer-to-Peer (P2P) economy, coupled with the recent deregulation of financial markets, has lead to the widespread adoption of Artificial Intelligence driven by FinTech firms to manage risk when speculating on unsecured P2P debt obligations. After meticulously identifying ‘debt belonging to high-risk individuals’ by leveraging an ensemble of Machine Learning algorithms, these firms are able to find ideal trading opportunities.
 
