@@ -1,0 +1,1465 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction &mdash; loan-status version 42ac928</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/bootstrap.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/rtd-style.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="loan-status version 42ac928" href="../index.html"/>
+        <link rel="prev" title="Welcome to loan-status’s documentation!" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> loan-status
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-overview">Project Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#objective">Objective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#project-setup">Project Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#import-libraries-modules">Import Libraries &amp; Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notebook-config">Notebook Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-functions">Custom Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#data-preprocessing">Data Preprocessing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#load-dataset">Load Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exploration">Exploration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#missing-data">Missing Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-munging">Data Munging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cleaning">Cleaning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#feature-engineering">Feature Engineering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#new-features">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drop-features">Drop Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#load-prepare-function">Load &amp; Prepare Function</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Missing Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#factor-analysis">Factor Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#target-loan-status">Target: loan_status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#summary-statistics">Summary Statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#predictive-modeling">Predictive Modeling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#initializing-train-test-sets">Initializing Train/Test Sets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#shuffle-and-split-data">Shuffle and Split Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#classification-models">Classification Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#naive-predictor-baseline">Naive Predictor (Baseline)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision-tree-classifier">Decision Tree Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#random-forest-classifier">Random Forest Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blagging-classifier">Blagging Classifier</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluating-model-performance">Evaluating Model Performance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#feature-importance">Feature Importance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#model-selection">Model Selection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimal-model">Optimal Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimizing-hyperparameters">Optimizing Hyperparameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#conclusion-pending">Conclusion *Pending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#references">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">loan-status</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/rst/loan-status.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="project-overview">
+<h2>Project Overview<a class="headerlink" href="#project-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="objective">
+<h3>Objective<a class="headerlink" href="#objective" title="Permalink to this headline">¶</a></h3>
+<p>Build a binary classification model that predicts the “Charged Off” or
+“Fully Paid” Status of a loan, and explain what features are the best
+predictors. The purpose is to use this model would be used to place
+trades on loans immediately after they are issued by Lending Club.</p>
+</div>
+<div class="section" id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
+<p>Data used for this project comes directly from Lending Club’s historical
+loan records (the full record contains more than 100 columns).</p>
+</div>
+</div>
+<div class="section" id="project-setup">
+<h2>Project Setup<a class="headerlink" href="#project-setup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="import-libraries-modules">
+<h3>Import Libraries &amp; Modules<a class="headerlink" href="#import-libraries-modules" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span>
+<span class="kn">from</span> <span class="nn">jupyterthemes</span> <span class="k">import</span> <span class="n">jtplot</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;source&#39;</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;../../&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">#import ipympl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="kn">import</span> <span class="nn">pandas_profiling</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="k">import</span> <span class="n">DummyClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">StratifiedShuffleSplit</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="k">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span><span class="p">,</span> <span class="n">ExtraTreesClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">LabelBinarizer</span><span class="p">,</span> <span class="n">Imputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="k">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">AdaBoostClassifier</span><span class="p">,</span> <span class="n">GradientBoostingClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">roc_curve</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">make_scorer</span><span class="p">,</span> <span class="n">fbeta_score</span><span class="p">,</span> <span class="n">accuracy_score</span>
+
+<span class="c1"># written by Gilles Louppe and distributed under the BSD 3 clause</span>
+<span class="kn">from</span> <span class="nn">src.vn_datasci.blagging</span> <span class="k">import</span> <span class="n">BlaggingClassifier</span>
+
+<span class="c1"># self-authored library that to facilatate ML classification and evaluation</span>
+<span class="kn">from</span> <span class="nn">src.vn_datasci.skhelper</span> <span class="k">import</span> <span class="n">LearningModel</span><span class="p">,</span> <span class="n">eval_db</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="notebook-config">
+<h3>Notebook Config<a class="headerlink" href="#notebook-config" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1">#%config figure_format=&#39;retina&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">)})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">1.25</span><span class="p">})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_palette</span><span class="p">(</span><span class="s2">&quot;deep&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">html</span>
+&lt;html&gt;&lt;head&gt;
+
+
+&lt;!-- Load require.js. Delete this if your page already loads require.js --&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js&quot; integrity=&quot;sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;application/vnd.jupyter.widget-state+json&quot;&gt;
+{
+    &quot;version_major&quot;: 2,
+    &quot;version_minor&quot;: 0,
+    &quot;state&quot;: {}
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+<html><head>
+
+
+<!-- Load require.js. Delete this if your page already loads require.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+<script type="application/vnd.jupyter.widget-state+json">
+{
+    "version_major": 2,
+    "version_minor": 0,
+    "state": {}
+}
+</script>
+</head>
+<body>
+
+
+</body>
+</html></div>
+<div class="section" id="custom-functions">
+<h3>Custom Functions<a class="headerlink" href="#custom-functions" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="section" id="data-preprocessing">
+<h1>Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="load-dataset">
+<h2>Load Dataset<a class="headerlink" href="#load-dataset" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_dataset</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;data/raw/lc_historical.csv&#39;</span><span class="p">):</span>
+    <span class="n">lc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">memory_map</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">lc</span><span class="o">.</span><span class="n">loan_status</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">lc</span><span class="o">.</span><span class="n">loan_status</span><span class="p">,</span> <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Fully Paid&#39;</span><span class="p">,</span> <span class="s1">&#39;Charged Off&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">lc</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exploration">
+<h2>Exploration<a class="headerlink" href="#exploration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Summary<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Target: loan-status</p></li>
+<li><p>Number of features: 18</p></li>
+<li><p>Number of observations: 138196</p></li>
+<li><p>Feature datatypes:</p>
+<ul>
+<li><p>object: dti, bc_util, fico_range_low, percent_bc_gt_75,
+acc_open_past_24mths, annual_inc, recoveries, avg_cur_bal,
+loan_amnt</p></li>
+<li><p>float64: revol_util, earliest_cr_line, purpose, emp_length,
+home_ownership, addr_state, issue_d, loan_status</p></li>
+</ul>
+</li>
+<li><p>Features with ALL missing or null values:</p>
+<ul>
+<li><p>inq_last_12m</p></li>
+<li><p>all_util</p></li>
+</ul>
+</li>
+<li><p>Features with SOME missing or null values:</p>
+<ul>
+<li><p>avg_cur_bal (30%)</p></li>
+<li><p>bc_util (21%)</p></li>
+<li><p>percent_bc_gt_75 (21%)</p></li>
+<li><p>acc_open_past_24mths (20%)</p></li>
+<li><p>emp_length (0.18%)</p></li>
+<li><p>revol_util (0.08%)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="missing-data">
+<h3>Missing Data<a class="headerlink" href="#missing-data" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_incomplete_stats</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="s1">&#39;This pattern has match groups&#39;</span><span class="p">)</span>
+    <span class="n">missing_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">missing_data</span><span class="p">[</span><span class="s1">&#39;Null&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">missing_data</span><span class="p">[</span><span class="s1">&#39;NA_or_Missing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">dataset</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">col</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;(^$|n/a|^na$|^%$)&#39;</span><span class="p">,</span> <span class="n">case</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+        <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+    <span class="n">missing_data</span><span class="p">[</span><span class="s1">&#39;Incomplete&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">missing_data</span><span class="o">.</span><span class="n">Null</span> <span class="o">+</span> <span class="n">missing_data</span><span class="o">.</span><span class="n">NA_or_Missing</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">))</span>
+    <span class="n">incomplete_stats</span> <span class="o">=</span> <span class="p">((</span><span class="n">missing_data</span><span class="p">[(</span><span class="n">missing_data</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)])</span>
+                        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Incomplete&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">incomplete_stats</span>
+
+<span class="k">def</span> <span class="nf">display_incomplete_stats</span><span class="p">(</span><span class="n">incomplete_stats</span><span class="p">):</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">incomplete_stats</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df_incomplete</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">stats</span><span class="o">.</span><span class="n">style</span>
+        <span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s1">&#39;Missing&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">light_palette</span><span class="p">(</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                             <span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Null&#39;</span><span class="p">,</span> <span class="s1">&#39;NA_or_Missing&#39;</span><span class="p">])</span>
+        <span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">light_palette</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                             <span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=.</span><span class="mi">6</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Incomplete&#39;</span><span class="p">])</span>
+        <span class="o">.</span><span class="n">format</span><span class="p">({</span><span class="s1">&#39;Null&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;NA_or_Missing&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;Incomplete&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:.1%}</span><span class="s1">&#39;</span><span class="p">}))</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df_incomplete</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_incomplete_stats</span><span class="p">(</span><span class="n">incomplete_stats</span><span class="p">,</span> <span class="n">ylim_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)):</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">incomplete_stats</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">Incomplete</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">Incomplete</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">y</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">Incomplete</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">_</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">():</span>
+        <span class="n">item</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+    <span class="n">_</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Incomplete (%)&#39;</span><span class="p">,</span>
+          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Features with Missing or Null Values&#39;</span><span class="p">,</span>
+          <span class="n">ylim</span><span class="o">=</span><span class="n">ylim_range</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">incomplete_data_report</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">display_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">incomplete_stats</span> <span class="o">=</span> <span class="n">calc_incomplete_stats</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">display_stats</span><span class="p">:</span>
+        <span class="n">display_incomplete_stats</span><span class="p">(</span><span class="n">incomplete_stats</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="n">plot_incomplete_stats</span><span class="p">(</span><span class="n">incomplete_stats</span><span class="p">)</span>
+
+
+<span class="n">incomplete_stats</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">()</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">calc_incomplete_stats</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">incomplete_stats</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Null</th>
+      <th>NA_or_Missing</th>
+      <th>Incomplete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>all_util</th>
+      <td>172745</td>
+      <td>0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>inq_last_12m</th>
+      <td>172745</td>
+      <td>0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>avg_cur_bal</th>
+      <td>51649</td>
+      <td>0</td>
+      <td>0.298990</td>
+    </tr>
+    <tr>
+      <th>bc_util</th>
+      <td>36407</td>
+      <td>0</td>
+      <td>0.210756</td>
+    </tr>
+    <tr>
+      <th>percent_bc_gt_75</th>
+      <td>36346</td>
+      <td>0</td>
+      <td>0.210403</td>
+    </tr>
+    <tr>
+      <th>acc_open_past_24mths</th>
+      <td>35121</td>
+      <td>0</td>
+      <td>0.203311</td>
+    </tr>
+    <tr>
+      <th>emp_length</th>
+      <td>0</td>
+      <td>7507</td>
+      <td>0.043457</td>
+    </tr>
+    <tr>
+      <th>revol_util</th>
+      <td>144</td>
+      <td>0</td>
+      <td>0.000834</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">plot_incomplete_stats</span><span class="p">(</span><span class="n">incomplete_stats</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/output_24_0.png" src="../_images/output_24_0.png" />
+</div>
+</div>
+<div class="section" id="data-munging">
+<h2>Data Munging<a class="headerlink" href="#data-munging" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cleaning">
+<h3>Cleaning<a class="headerlink" href="#cleaning" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>all_util, inq_last_12m</p>
+<ul>
+<li><p>Drop features (all observations contain null/missing values)</p></li>
+</ul>
+</li>
+<li><p>revol_util</p>
+<ol class="arabic simple">
+<li><p>Remove the percent sign (%) from string</p></li>
+<li><p>Convert to a float</p></li>
+</ol>
+</li>
+<li><p>earliest_cr_line, issue_d</p>
+<ul>
+<li><p>Convert to datetime data type.</p></li>
+</ul>
+</li>
+<li><p>emp_length</p>
+<ol class="arabic simple">
+<li><p>Strip leading and trailing whitespace</p></li>
+<li><p>Replace ‘&lt; 1’ with ‘0.5’</p></li>
+<li><p>Replace ‘10+’ with ‘10.5’</p></li>
+<li><p>Fill null values with ‘-1.5’</p></li>
+<li><p>Convert to float</p></li>
+</ol>
+</li>
+</ul>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clean_data</span><span class="p">(</span><span class="n">lc</span><span class="p">):</span>
+    <span class="n">lc</span> <span class="o">=</span> <span class="n">lc</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">dt_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;earliest_cr_line&#39;</span><span class="p">,</span> <span class="s1">&#39;issue_d&#39;</span><span class="p">]</span>
+    <span class="n">lc</span><span class="p">[</span><span class="n">dt_features</span><span class="p">]</span> <span class="o">=</span> <span class="n">lc</span><span class="p">[</span><span class="n">dt_features</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">cat_features</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;purpose&#39;</span><span class="p">,</span> <span class="s1">&#39;home_ownership&#39;</span><span class="p">,</span> <span class="s1">&#39;addr_state&#39;</span><span class="p">]</span>
+    <span class="n">lc</span><span class="p">[</span><span class="n">cat_features</span><span class="p">]</span> <span class="o">=</span> <span class="n">lc</span><span class="p">[</span><span class="n">cat_features</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">lc</span><span class="o">.</span><span class="n">revol_util</span> <span class="o">=</span> <span class="p">(</span><span class="n">lc</span><span class="o">.</span><span class="n">revol_util</span>
+                     <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;(\d+\.?\d?)&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                     <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">))</span>
+
+    <span class="n">lc</span><span class="o">.</span><span class="n">emp_length</span> <span class="o">=</span> <span class="p">(</span><span class="n">lc</span><span class="o">.</span><span class="n">emp_length</span>
+                     <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;(&lt; 1|10\+|\d+)&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                     <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt; 1&#39;</span><span class="p">,</span> <span class="s1">&#39;0.5&#39;</span><span class="p">)</span>
+                     <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;10+&#39;</span><span class="p">,</span> <span class="s1">&#39;10.5&#39;</span><span class="p">)</span>
+                     <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;-1.5&#39;</span><span class="p">)</span>
+                     <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">lc</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">()</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">clean_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="feature-engineering">
+<h2>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="new-features">
+<h3>New Features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>loan_amnt_to_inc</p>
+<ul>
+<li><p>the ratio of loan amount to annual income</p></li>
+</ul>
+</li>
+<li><p>earliest_cr_line_age</p>
+<ul>
+<li><p>age of first credit line from when the loan was issued</p></li>
+</ul>
+</li>
+<li><p>avg_cur_bal_to_inc</p>
+<ul>
+<li><p>the ratio of avg current balance to annual income</p></li>
+</ul>
+</li>
+<li><p>avg_cur_bal_to_loan_amnt</p>
+<ul>
+<li><p>the ratio of avg current balance to loan amount</p></li>
+</ul>
+</li>
+<li><p>acc_open_past_24mths_groups</p>
+<ul>
+<li><p>level of accounts opened in the last 2 yrs</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_features</span><span class="p">(</span><span class="n">lc</span><span class="p">):</span>
+    <span class="c1"># ratio of loan amount to annual income</span>
+    <span class="n">group_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;avg&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">]</span>
+    <span class="n">lc</span><span class="p">[</span><span class="s1">&#39;loan_amnt_to_inc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">((</span><span class="n">lc</span><span class="o">.</span><span class="n">loan_amnt</span> <span class="o">/</span> <span class="n">lc</span><span class="o">.</span><span class="n">annual_inc</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;avg&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">])</span>
+        <span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">set_categories</span><span class="p">([</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;avg&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+    <span class="c1"># age of first credit line from when the loan was issued</span>
+    <span class="n">lc</span><span class="p">[</span><span class="s1">&#39;earliest_cr_line_age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">lc</span><span class="o">.</span><span class="n">issue_d</span> <span class="o">-</span> <span class="n">lc</span><span class="o">.</span><span class="n">earliest_cr_line</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="c1"># the ratio of avg current balance to annual income</span>
+    <span class="n">lc</span><span class="p">[</span><span class="s1">&#39;avg_cur_bal_to_inc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lc</span><span class="o">.</span><span class="n">avg_cur_bal</span> <span class="o">/</span> <span class="n">lc</span><span class="o">.</span><span class="n">annual_inc</span>
+
+    <span class="c1"># the ratio of avg current balance to loan amount</span>
+    <span class="n">lc</span><span class="p">[</span><span class="s1">&#39;avg_cur_bal_to_loan_amnt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lc</span><span class="o">.</span><span class="n">avg_cur_bal</span> <span class="o">/</span> <span class="n">lc</span><span class="o">.</span><span class="n">loan_amnt</span>
+
+    <span class="c1"># grouping level of accounts opened in the last 2 yrs</span>
+    <span class="n">lc</span><span class="p">[</span><span class="s1">&#39;acc_open_past_24mths_groups&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">lc</span><span class="o">.</span><span class="n">acc_open_past_24mths</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;avg&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">])</span>
+        <span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">add_categories</span><span class="p">([</span><span class="s1">&#39;unknown&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;unknown&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">set_categories</span><span class="p">([</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;avg&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown&#39;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">lc</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">()</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">clean_data</span><span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">add_features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="drop-features">
+<h3>Drop Features<a class="headerlink" href="#drop-features" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">drop_features</span><span class="p">(</span><span class="n">lc</span><span class="p">):</span>
+    <span class="n">target_leaks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;recoveries&#39;</span><span class="p">,</span> <span class="s1">&#39;issue_d&#39;</span><span class="p">]</span>
+    <span class="n">other_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;earliest_cr_line&#39;</span><span class="p">,</span> <span class="s1">&#39;acc_open_past_24mths&#39;</span><span class="p">,</span> <span class="s1">&#39;addr_state&#39;</span><span class="p">]</span>
+    <span class="n">to_drop</span> <span class="o">=</span> <span class="n">target_leaks</span> <span class="o">+</span> <span class="n">other_features</span>
+    <span class="k">return</span> <span class="n">lc</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">to_drop</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">()</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">clean_data</span><span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">add_features</span><span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">drop_features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="load-prepare-function">
+<h2>Load &amp; Prepare Function<a class="headerlink" href="#load-prepare-function" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_prepare_dataset</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">load_dataset</span><span class="p">()</span>
+            <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">clean_data</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">add_features</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">drop_features</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exploratory-data-analysis-eda">
+<h1>Exploratory Data Analysis (EDA)<a class="headerlink" href="#exploratory-data-analysis-eda" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_factor_pct</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">feature</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">feature</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span>
+    <span class="n">factor_counts</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="n">x_vals</span> <span class="o">=</span> <span class="n">factor_counts</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">y_vals</span> <span class="o">=</span> <span class="p">((</span><span class="n">factor_counts</span><span class="o">.</span><span class="n">values</span><span class="o">/</span><span class="n">factor_counts</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">y_vals</span><span class="p">);</span>
+
+<span class="k">def</span> <span class="nf">plot_pct_charged_off</span><span class="p">(</span><span class="n">lc</span><span class="p">,</span> <span class="n">feature</span><span class="p">):</span>
+    <span class="n">lc_counts</span> <span class="o">=</span> <span class="n">lc</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="n">charged_off</span> <span class="o">=</span> <span class="n">lc</span><span class="p">[</span><span class="n">lc</span><span class="o">.</span><span class="n">loan_status</span><span class="o">==</span><span class="s1">&#39;Charged Off&#39;</span><span class="p">]</span>
+    <span class="n">charged_off_counts</span> <span class="o">=</span> <span class="n">charged_off</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="n">charged_off_ratio</span> <span class="o">=</span> <span class="p">((</span><span class="n">charged_off_counts</span> <span class="o">/</span> <span class="n">lc_counts</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+                         <span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+    <span class="n">x_vals</span> <span class="o">=</span> <span class="n">charged_off_ratio</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">y_vals</span> <span class="o">=</span> <span class="n">charged_off_ratio</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">y_vals</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">pfr</span> <span class="o">=</span> <span class="p">(</span><span class="n">load_dataset</span><span class="p">()</span>
+ <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">clean_data</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">add_features</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">drop_features</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">pandas_profiling</span><span class="o">.</span><span class="n">ProfileReport</span><span class="p">))</span>
+<span class="n">pfr</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;reports/EDA.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="id2">
+<h3>Missing Data<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">incomplete_stats</span> <span class="o">=</span> <span class="p">(</span><span class="n">load_dataset</span><span class="p">()</span>
+                    <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">clean_data</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">add_features</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">drop_features</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">calc_incomplete_stats</span><span class="p">))</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">incomplete_stats</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Null</th>
+      <th>NA_or_Missing</th>
+      <th>Incomplete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>avg_cur_bal</th>
+      <td>51649</td>
+      <td>0</td>
+      <td>0.298990</td>
+    </tr>
+    <tr>
+      <th>avg_cur_bal_to_inc</th>
+      <td>51649</td>
+      <td>0</td>
+      <td>0.298990</td>
+    </tr>
+    <tr>
+      <th>avg_cur_bal_to_loan_amnt</th>
+      <td>51649</td>
+      <td>0</td>
+      <td>0.298990</td>
+    </tr>
+    <tr>
+      <th>bc_util</th>
+      <td>36407</td>
+      <td>0</td>
+      <td>0.210756</td>
+    </tr>
+    <tr>
+      <th>percent_bc_gt_75</th>
+      <td>36346</td>
+      <td>0</td>
+      <td>0.210403</td>
+    </tr>
+    <tr>
+      <th>revol_util</th>
+      <td>144</td>
+      <td>0</td>
+      <td>0.000834</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">plot_incomplete_stats</span><span class="p">(</span><span class="n">incomplete_stats</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/output_46_0.png" src="../_images/output_46_0.png" />
+</div>
+</div>
+<div class="section" id="factor-analysis">
+<h2>Factor Analysis<a class="headerlink" href="#factor-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="target-loan-status">
+<h3>Target: loan_status<a class="headerlink" href="#target-loan-status" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">plot_factor_pct</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;loan_status&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/output_49_0.png" src="../_images/output_49_0.png" />
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">plot_factor_pct</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;home_ownership&#39;</span><span class="p">);</span>
+
+<span class="n">plot_pct_charged_off</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;home_ownership&#39;</span><span class="p">);</span>
+
+<span class="n">plot_factor_pct</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;purpose&#39;</span><span class="p">);</span>
+
+<span class="n">plot_pct_charged_off</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;purpose&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../_images/output_50_0.png" src="../_images/output_50_0.png" />
+</div>
+</div>
+<div class="section" id="summary-statistics">
+<h2>Summary Statistics<a class="headerlink" href="#summary-statistics" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="predictive-modeling">
+<h1>Predictive Modeling<a class="headerlink" href="#predictive-modeling" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_and_preprocess_data</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">load_dataset</span><span class="p">()</span>
+            <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">clean_data</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">add_features</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">drop_features</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">to_xy</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;loan_status&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+</pre></div>
+</div>
+<div class="section" id="initializing-train-test-sets">
+<h2>Initializing Train/Test Sets<a class="headerlink" href="#initializing-train-test-sets" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="shuffle-and-split-data">
+<h3>Shuffle and Split Data<a class="headerlink" href="#shuffle-and-split-data" title="Permalink to this headline">¶</a></h3>
+<p>Let’s split the data (both features and their labels) into training and
+test sets. 80% of the data will be used for training and 20% for
+testing.</p>
+<p>Run the code cell below to perform this split.</p>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_and_preprocess_data</span><span class="p">()</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">to_xy</span><span class="p">)</span>
+<span class="n">split_data</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">split_data</span>
+
+<span class="n">dnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">,</span> <span class="s1">&#39;X_test&#39;</span><span class="p">,</span> <span class="s1">&#39;y_train&#39;</span><span class="p">,</span> <span class="s1">&#39;y_test&#39;</span><span class="p">]</span>
+<span class="n">train_test_sets</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">dnames</span><span class="p">,</span> <span class="p">[</span><span class="o">*</span><span class="n">split_data</span><span class="p">]))</span>
+
+<span class="c1"># Show the results of the split</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training set has </span><span class="si">{}</span><span class="s2"> samples.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing set has </span><span class="si">{}</span><span class="s2"> samples.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Training</span> <span class="nb">set</span> <span class="n">has</span> <span class="mi">138196</span> <span class="n">samples</span><span class="o">.</span>
+<span class="n">Testing</span> <span class="nb">set</span> <span class="n">has</span> <span class="mi">34549</span> <span class="n">samples</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="classification-models">
+<h2>Classification Models<a class="headerlink" href="#classification-models" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="naive-predictor-baseline">
+<h3>Naive Predictor (Baseline)<a class="headerlink" href="#naive-predictor-baseline" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">dummy_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;imp&#39;</span><span class="p">,</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span>
+                       <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="mi">0</span><span class="p">))])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">precision_score</span>
+
+<span class="n">dummy_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1">#</span>
+<span class="n">naive_pred</span> <span class="o">=</span> <span class="n">dummy_pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Calculate accuracy</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_pred</span><span class="o">=</span><span class="n">naive_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">)</span>
+
+<span class="c1"># Print the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Naive Predictor: [Accuracy score: </span><span class="si">{:.4f}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Naive</span> <span class="n">Predictor</span><span class="p">:</span> <span class="p">[</span><span class="n">Accuracy</span> <span class="n">score</span><span class="p">:</span> <span class="mf">0.8762</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="decision-tree-classifier">
+<h3>Decision Tree Classifier<a class="headerlink" href="#decision-tree-classifier" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">tree_clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">tree_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;imp&#39;</span><span class="p">,</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">tree_clf</span><span class="p">)])</span>
+<span class="n">tree_model</span> <span class="o">=</span> <span class="n">LearningModel</span><span class="p">(</span><span class="s1">&#39;Decision Tree Classifier&#39;</span><span class="p">,</span> <span class="n">tree_pipeline</span><span class="p">)</span>
+<span class="c1"># notes=&#39;Baseline Model&#39;</span>
+
+<span class="n">tree_model</span><span class="o">.</span><span class="n">fit_and_predict</span><span class="p">(</span><span class="o">**</span><span class="n">train_test_sets</span><span class="p">)</span>
+<span class="n">tree_model</span><span class="o">.</span><span class="n">display_evaluation</span><span class="p">()</span>
+<span class="n">model_evals</span> <span class="o">=</span> <span class="n">eval_db</span><span class="p">(</span><span class="n">tree_model</span><span class="o">.</span><span class="n">eval_report</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FitTime</th>
+      <th>Accuracy</th>
+      <th>FBeta</th>
+      <th>F1</th>
+      <th>AUC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Decision Tree Classifier</th>
+      <td>2.0</td>
+      <td>0.78558</td>
+      <td>0.156742</td>
+      <td>0.154531</td>
+      <td>0.516244</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-default"><div class="highlight"><pre><span></span>             <span class="n">precision</span>    <span class="n">recall</span>  <span class="n">f1</span><span class="o">-</span><span class="n">score</span>   <span class="n">support</span>
+
+          <span class="mi">0</span>       <span class="mf">0.88</span>      <span class="mf">0.87</span>      <span class="mf">0.88</span>     <span class="mi">30271</span>
+          <span class="mi">1</span>       <span class="mf">0.15</span>      <span class="mf">0.16</span>      <span class="mf">0.15</span>      <span class="mi">4278</span>
+
+<span class="n">avg</span> <span class="o">/</span> <span class="n">total</span>       <span class="mf">0.79</span>      <span class="mf">0.79</span>      <span class="mf">0.79</span>     <span class="mi">34549</span>
+</pre></div>
+</div>
+<img alt="../_images/output_63_2.png" src="../_images/output_63_2.png" />
+</div>
+<div class="section" id="random-forest-classifier">
+<h3>Random Forest Classifier<a class="headerlink" href="#random-forest-classifier" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">rf_clf_baseline</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced_subsample&#39;</span><span class="p">,</span>
+                                         <span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">rf_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;imp&#39;</span><span class="p">,</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span>
+                        <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">rf_clf_baseline</span><span class="p">)])</span>
+
+<span class="n">rf_model</span> <span class="o">=</span> <span class="n">LearningModel</span><span class="p">(</span><span class="s1">&#39;Random Forest Classifier&#39;</span><span class="p">,</span> <span class="n">rf_pipeline</span><span class="p">)</span>
+<span class="n">rf_model</span><span class="o">.</span><span class="n">fit_and_predict</span><span class="p">(</span><span class="o">**</span><span class="n">train_test_sets</span><span class="p">)</span>
+<span class="n">rf_model</span><span class="o">.</span><span class="n">display_evaluation</span><span class="p">()</span>
+<span class="n">model_evals</span> <span class="o">=</span> <span class="n">eval_db</span><span class="p">(</span><span class="n">model_evals</span><span class="p">,</span> <span class="n">rf_model</span><span class="o">.</span><span class="n">eval_report</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FitTime</th>
+      <th>Accuracy</th>
+      <th>FBeta</th>
+      <th>F1</th>
+      <th>AUC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Random Forest Classifier</th>
+      <td>2.0</td>
+      <td>0.874671</td>
+      <td>0.008998</td>
+      <td>0.014117</td>
+      <td>0.573608</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-default"><div class="highlight"><pre><span></span>             <span class="n">precision</span>    <span class="n">recall</span>  <span class="n">f1</span><span class="o">-</span><span class="n">score</span>   <span class="n">support</span>
+
+          <span class="mi">0</span>       <span class="mf">0.88</span>      <span class="mf">1.00</span>      <span class="mf">0.93</span>     <span class="mi">30271</span>
+          <span class="mi">1</span>       <span class="mf">0.27</span>      <span class="mf">0.01</span>      <span class="mf">0.01</span>      <span class="mi">4278</span>
+
+<span class="n">avg</span> <span class="o">/</span> <span class="n">total</span>       <span class="mf">0.80</span>      <span class="mf">0.87</span>      <span class="mf">0.82</span>     <span class="mi">34549</span>
+</pre></div>
+</div>
+<img alt="../_images/output_65_2.png" src="../_images/output_65_2.png" />
+</div>
+<div class="section" id="blagging-classifier">
+<h3>Blagging Classifier<a class="headerlink" href="#blagging-classifier" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="base-estimator-rf">
+<h4>Base Estimator -&gt; RF<a class="headerlink" href="#base-estimator-rf" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">blagging_base</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced_subsample&#39;</span><span class="p">,</span>
+                                       <span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">blagging_clf</span> <span class="o">=</span> <span class="n">BlaggingClassifier</span><span class="p">(</span><span class="n">base_estimator</span><span class="o">=</span><span class="n">blagging_base</span><span class="p">,</span>
+                                  <span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">blagging_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;imp&#39;</span><span class="p">,</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span>
+                              <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">blagging_clf</span><span class="p">)])</span>
+
+<span class="n">blagging_model</span> <span class="o">=</span> <span class="n">LearningModel</span><span class="p">(</span><span class="s1">&#39;Blagging Classifier (RF)&#39;</span><span class="p">,</span> <span class="n">blagging_pipeline</span><span class="p">)</span>
+<span class="n">blagging_model</span><span class="o">.</span><span class="n">fit_and_predict</span><span class="p">(</span><span class="o">**</span><span class="n">train_test_sets</span><span class="p">)</span>
+<span class="n">blagging_model</span><span class="o">.</span><span class="n">display_evaluation</span><span class="p">()</span>
+<span class="n">model_evals</span> <span class="o">=</span> <span class="n">eval_db</span><span class="p">(</span><span class="n">model_evals</span><span class="p">,</span> <span class="n">blagging_model</span><span class="o">.</span><span class="n">eval_report</span><span class="p">)</span>
+<span class="c1"># notes=&#39;Base Estimator=ExtraTrees&#39;</span>
+</pre></div>
+</div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FitTime</th>
+      <th>Accuracy</th>
+      <th>FBeta</th>
+      <th>F1</th>
+      <th>AUC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Blagging Classifier (RF)</th>
+      <td>2.0</td>
+      <td>0.719181</td>
+      <td>0.344518</td>
+      <td>0.270746</td>
+      <td>0.645877</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-default"><div class="highlight"><pre><span></span>             <span class="n">precision</span>    <span class="n">recall</span>  <span class="n">f1</span><span class="o">-</span><span class="n">score</span>   <span class="n">support</span>
+
+          <span class="mi">0</span>       <span class="mf">0.90</span>      <span class="mf">0.76</span>      <span class="mf">0.83</span>     <span class="mi">30271</span>
+          <span class="mi">1</span>       <span class="mf">0.20</span>      <span class="mf">0.42</span>      <span class="mf">0.27</span>      <span class="mi">4278</span>
+
+<span class="n">avg</span> <span class="o">/</span> <span class="n">total</span>       <span class="mf">0.82</span>      <span class="mf">0.72</span>      <span class="mf">0.76</span>     <span class="mi">34549</span>
+</pre></div>
+</div>
+<img alt="../_images/output_68_2.png" src="../_images/output_68_2.png" />
+</div>
+<div class="section" id="base-estimator-extratrees">
+<h4>Base Estimator -&gt; ExtraTrees<a class="headerlink" href="#base-estimator-extratrees" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">blagging_base</span> <span class="o">=</span> <span class="n">ExtraTreesClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">,</span>
+                                     <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced_subsample&#39;</span><span class="p">,</span>
+                                     <span class="n">max_features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                     <span class="n">n_estimators</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">blagging_clf</span> <span class="o">=</span> <span class="n">BlaggingClassifier</span><span class="p">(</span><span class="n">base_estimator</span><span class="o">=</span><span class="n">blagging_base</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">blagging_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;imp&#39;</span><span class="p">,</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span>
+                              <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">blagging_clf</span><span class="p">)])</span>
+
+<span class="n">blagging_model</span> <span class="o">=</span> <span class="n">LearningModel</span><span class="p">(</span><span class="s1">&#39;Blagging Classifier (Extra Trees)&#39;</span><span class="p">,</span>
+                               <span class="n">blagging_pipeline</span><span class="p">)</span>
+<span class="n">blagging_model</span><span class="o">.</span><span class="n">fit_and_predict</span><span class="p">(</span><span class="o">**</span><span class="n">train_test_sets</span><span class="p">)</span>
+<span class="n">blagging_model</span><span class="o">.</span><span class="n">display_evaluation</span><span class="p">()</span>
+<span class="n">model_evals</span> <span class="o">=</span> <span class="n">eval_db</span><span class="p">(</span><span class="n">model_evals</span><span class="p">,</span> <span class="n">blagging_model</span><span class="o">.</span><span class="n">eval_report</span><span class="p">)</span>
+<span class="c1"># notes=&#39;Base Estimator=ExtraTrees&#39;</span>
+</pre></div>
+</div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FitTime</th>
+      <th>Accuracy</th>
+      <th>FBeta</th>
+      <th>F1</th>
+      <th>AUC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Blagging Classifier (Extra Trees)</th>
+      <td>20.0</td>
+      <td>0.749718</td>
+      <td>0.309224</td>
+      <td>0.259611</td>
+      <td>0.645899</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-default"><div class="highlight"><pre><span></span>             <span class="n">precision</span>    <span class="n">recall</span>  <span class="n">f1</span><span class="o">-</span><span class="n">score</span>   <span class="n">support</span>
+
+          <span class="mi">0</span>       <span class="mf">0.90</span>      <span class="mf">0.81</span>      <span class="mf">0.85</span>     <span class="mi">30271</span>
+          <span class="mi">1</span>       <span class="mf">0.20</span>      <span class="mf">0.35</span>      <span class="mf">0.26</span>      <span class="mi">4278</span>
+
+<span class="n">avg</span> <span class="o">/</span> <span class="n">total</span>       <span class="mf">0.81</span>      <span class="mf">0.75</span>      <span class="mf">0.78</span>     <span class="mi">34549</span>
+</pre></div>
+</div>
+<img alt="../_images/output_70_2.png" src="../_images/output_70_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="evaluating-model-performance">
+<h2>Evaluating Model Performance<a class="headerlink" href="#evaluating-model-performance" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="feature-importance">
+<h3>Feature Importance<a class="headerlink" href="#feature-importance" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="top-15-features">
+<h4>Top 15 Features<a class="headerlink" href="#top-15-features" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="c1"># via RandomForestClassifier</span>
+<span class="n">rf_top_features</span> <span class="o">=</span> <span class="n">LearningModel</span><span class="p">(</span>
+    <span class="s1">&#39;Random Forest Classifier&#39;</span><span class="p">,</span>
+    <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;imp&#39;</span><span class="p">,</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span>
+              <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced_subsample&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">))]))</span>
+<span class="n">rf_top_features</span><span class="o">.</span><span class="n">fit_and_predict</span><span class="p">(</span><span class="o">**</span><span class="n">train_test_sets</span><span class="p">)</span>
+
+<span class="n">rf_top_features</span><span class="o">.</span><span class="n">display_top_features</span><span class="p">(</span><span class="n">top_n</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>dti</td>
+      <td>0.115602</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>earliest_cr_line_age</td>
+      <td>0.115381</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>revol_util</td>
+      <td>0.109714</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>annual_inc</td>
+      <td>0.099535</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>loan_amnt</td>
+      <td>0.080153</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>bc_util</td>
+      <td>0.077465</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>fico_range_low</td>
+      <td>0.071342</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>avg_cur_bal_to_loan_amnt</td>
+      <td>0.062594</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>avg_cur_bal_to_inc</td>
+      <td>0.052817</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>avg_cur_bal</td>
+      <td>0.050275</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>emp_length</td>
+      <td>0.047003</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>percent_bc_gt_75</td>
+      <td>0.034591</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>home_ownership_RENT</td>
+      <td>0.009037</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>purpose_credit_card</td>
+      <td>0.008536</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>purpose_debt_consolidation</td>
+      <td>0.007986</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">rf_top_features</span><span class="o">.</span><span class="n">plot_top_features</span><span class="p">(</span><span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/output_75_0.png" src="../_images/output_75_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="model-selection">
+<h2>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="comparative-analysis">
+<h3>Comparative Analysis<a class="headerlink" href="#comparative-analysis" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">model_evals</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FitTime</th>
+      <th>Accuracy</th>
+      <th>FBeta</th>
+      <th>F1</th>
+      <th>AUC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Decision Tree Classifier</th>
+      <td>2.0</td>
+      <td>0.785580</td>
+      <td>0.156742</td>
+      <td>0.154531</td>
+      <td>0.516244</td>
+    </tr>
+    <tr>
+      <th>Random Forest Classifier</th>
+      <td>2.0</td>
+      <td>0.874671</td>
+      <td>0.008998</td>
+      <td>0.014117</td>
+      <td>0.573608</td>
+    </tr>
+    <tr>
+      <th>Blagging Classifier (RF)</th>
+      <td>2.0</td>
+      <td>0.719181</td>
+      <td>0.344518</td>
+      <td>0.270746</td>
+      <td>0.645877</td>
+    </tr>
+    <tr>
+      <th>Blagging Classifier (Extra Trees)</th>
+      <td>20.0</td>
+      <td>0.749718</td>
+      <td>0.309224</td>
+      <td>0.259611</td>
+      <td>0.645899</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div class="section" id="optimal-model">
+<h3>Optimal Model<a class="headerlink" href="#optimal-model" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="n">blagging_base</span> <span class="o">=</span> <span class="n">ExtraTreesClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">,</span>
+                                     <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced_subsample&#39;</span><span class="p">,</span>
+                                     <span class="n">max_features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                     <span class="n">n_estimators</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+<span class="n">blagging_clf</span> <span class="o">=</span> <span class="n">BlaggingClassifier</span><span class="p">(</span><span class="n">base_estimator</span><span class="o">=</span><span class="n">blagging_base</span><span class="p">,</span>
+                                  <span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">blagging_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;imp&#39;</span><span class="p">,</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span>
+                              <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">blagging_clf</span><span class="p">)])</span>
+
+<span class="n">model_pretty_name</span> <span class="o">=</span> <span class="s1">&#39;Blagging Classifier (Extra Trees)&#39;</span>
+<span class="n">blagging_model</span> <span class="o">=</span> <span class="n">LearningModel</span><span class="p">(</span><span class="n">model_pretty_name</span><span class="p">,</span> <span class="n">blagging_pipeline</span><span class="p">)</span>
+<span class="n">blagging_model</span><span class="o">.</span><span class="n">fit_and_predict</span><span class="p">(</span><span class="o">**</span><span class="n">train_test_sets</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="optimizing-hyperparameters">
+<h3>Optimizing Hyperparameters<a class="headerlink" href="#optimizing-hyperparameters" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3"><div class="highlight"><pre><span></span><span class="c1">#ToDo: Perform GridSearch...</span>
+</pre></div>
+</div>
+<div class="section" id="results">
+<h4>Results:<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">|</span>     <span class="n">Metric</span>     <span class="o">|</span> <span class="n">Benchmark</span> <span class="n">Predictor</span> <span class="o">|</span> <span class="n">Unoptimized</span> <span class="n">Model</span> <span class="o">|</span> <span class="n">Optimized</span> <span class="n">Model</span> <span class="o">|</span>
+<span class="o">|</span> <span class="p">:</span><span class="o">------------</span><span class="p">:</span> <span class="o">|</span> <span class="p">:</span><span class="o">-----------------</span><span class="p">:</span> <span class="o">|</span> <span class="p">:</span><span class="o">---------------</span><span class="p">:</span> <span class="o">|</span> <span class="p">:</span><span class="o">-------------</span><span class="p">:</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">Accuracy</span> <span class="n">Score</span> <span class="o">|</span>      <span class="mf">0.7899</span>         <span class="o">|</span>     <span class="mf">0.7499</span>        <span class="o">|</span>        <span class="o">-</span>        <span class="o">|</span>
+<span class="o">|</span> <span class="n">F1</span><span class="o">-</span><span class="n">score</span>       <span class="o">|</span>      <span class="mf">0.1603</span>         <span class="o">|</span>     <span class="mf">0.2602</span>        <span class="o">|</span>        <span class="o">-</span>        <span class="o">|</span>
+<span class="o">|</span> <span class="n">AUC</span>            <span class="o">|</span>      <span class="mf">0.5203</span>         <span class="o">|</span>     <span class="mf">0.6463</span>        <span class="o">|</span>        <span class="o">-</span>        <span class="o">|</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="conclusion-pending">
+<h1>Conclusion *Pending<a class="headerlink" href="#conclusion-pending" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Welcome to loan-status’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Victor Naidu.
+      Last updated on Aug 15, 2017.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'42ac928',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/js/require.js"></script>
+      <script type="text/javascript" src="../_static/js/embed-amd.js"></script>
+      <script type="text/javascript" src="../_static/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../_static/js/jquery-3.2.1.js"></script>
+      <script type="text/javascript" src="../_static/js/popper.js"></script>
+      <script type="text/javascript" src="../_static/js/custom.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
