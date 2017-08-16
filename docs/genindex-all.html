@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; loan-status version 47cd898</title>
+  <title>Index &mdash; loan-status version 0debdbf</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="loan-status version 47cd898" href="index.html"/> 
+    <link rel="top" title="loan-status version 0debdbf" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -88,16 +88,18 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="rst/loan-status.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rst/loan-status.html#project-overview">Project Overview</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="rst/loan-status.html#objective">Objective</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rst/loan-status.html#summary">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/loan-status.html">Classifying Risky P2P Loans</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst/loan-status.html#abstract">Abstract</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst/loan-status.html#project-overview">Project Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst/loan-status.html#objective">Objective</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rst/loan-status.html#about-p2p-lending">About P2P Lending</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rst/loan-status.html#project-setup">Project Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="rst/loan-status.html#import-libraries-modules">Import Libraries &amp; Modules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rst/loan-status.html#notebook-config">Notebook Config</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rst/loan-status.html#custom-functions">Custom Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -105,7 +107,7 @@
 <li class="toctree-l1"><a class="reference internal" href="rst/loan-status.html#data-preprocessing">Data Preprocessing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rst/loan-status.html#load-dataset">Load Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rst/loan-status.html#exploration">Exploration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="rst/loan-status.html#id1">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rst/loan-status.html#summary">Summary</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rst/loan-status.html#missing-data">Missing Data</a></li>
 </ul>
 </li>
@@ -122,6 +124,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rst/loan-status.html#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst/loan-status.html#id1">Helper Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rst/loan-status.html#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="rst/loan-status.html#id2">Missing Data</a></li>
 </ul>
@@ -146,7 +149,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rst/loan-status.html#evaluating-model-performance">Evaluating Model Performance</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="rst/loan-status.html#feature-importance">Feature Importance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rst/loan-status.html#feature-importance-via-randomforestclassifier">Feature Importance (via RandomForestClassifier)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rst/loan-status.html#model-selection">Model Selection</a><ul>
@@ -241,7 +244,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, Victor Naidu.
-      Last updated on Aug 15, 2017.
+      Last updated on Aug 16, 2017.
 
     </p>
   </div> 
@@ -262,7 +265,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'47cd898',
+            VERSION:'0debdbf',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
