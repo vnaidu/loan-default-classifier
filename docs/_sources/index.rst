@@ -10,7 +10,7 @@ Welcome to loan-status's documentation!
 
 .. toctree::
    :maxdepth: 3
-   :caption: Contents:
+   :caption: Project Contents:
 
    rst/loan-status.rst
 
