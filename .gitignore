@@ -109,3 +109,5 @@ data/raw/__MACOSX/
 \.directory
 
 build-docs\.sh
+
+notebooks/loan-status--backup\.ipynb
